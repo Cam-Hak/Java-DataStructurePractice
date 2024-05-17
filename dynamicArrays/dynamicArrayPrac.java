@@ -28,6 +28,7 @@ public class dynamicArrayPrac {
     if (size >= capacity) {
       grow();
     }
+    // has to adjust every other element in the array in order to insert a value
     for (int i = size; i > index; i--) {
       array[i] = array[i - 1];
     }
@@ -74,7 +75,14 @@ public class dynamicArrayPrac {
   }
 
   private void shrink() {
+    int newCapacity = (int) (capacity / 2);
+    Object[] newArray = new Object[newCapacity];
 
+    for (int i = 0; i < size; i++) {
+      newArray[i] = array[i];
+    }
+    capacity = newCapacity;
+    array = newArray;
   }
 
   public boolean isEmpty() {
